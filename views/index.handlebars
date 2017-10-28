@@ -3,31 +3,34 @@
 <div class="container ">
 	<div class="row">
 		<div class="left-side col-md-6">
-		<!--All available burgers on  left side go here as a new row-->
+		<!--All available burgers on left side go here as a new row-->
 			{{#each burgers}}
-				<div class="row">
-					<div class="col-md-8">
-					  <p>{{id}}. {{burger_name}}</p>
-					  <hr>
+				{{#unless devoured}}
+					{{>burgers/burger-block}}
+					<div class="row">
+						<div class="col-md-8">
+						 <hr>
+					  	</div>
 				  	</div>
-					<div class="col-md-4">
-					  <button>Devour It!</button>
-					</div>
-			  	</div> 
+			  	{{/unless}} 
 			{{/each}}
 		</div>
 		<div class="right-side col-md-6">
 		<!-- All devoured burgers go on the right side here as a new row-->
-		  <div class="row">
-				<div class="col-md-12">
-				  <p>Id: {{id}} burger name: {{burger_name}}</p>
-				  <hr>
-			  </div>
-		  </div>
+			{{#each burgers}}
+				{{#if devoured}}
+					<div class="row">
+						<div class="col-md-8">
+						  <p>{{id}}. {{burger_name}}</p>
+						  <hr>
+					  	</div>
+				  	</div>
+				{{/if}} 	 
+			{{/each}}
 		</div>
 	</div>
 
-	<form>    
+	<form class="create-form">    
 	  <div class="form-group">
 	    <label for="exampleFormControlTextarea1">Example textarea</label>
 	    <textarea class="form-control" id="text-area" rows="3"></textarea>
